@@ -14,7 +14,7 @@
         
         <nav class="top-nav">
             <div class="logo">✝️ PROJETO ÁGORA</div>
-            <div id="user-area" class="user-badge" onclick="abrirLogin()">
+            <div id="user-area" class="user-badge">
                 <i class="fas fa-user-circle"></i> Entrar
             </div>
         </nav>
@@ -22,85 +22,43 @@
         <header class="hero">
             <div class="hero-bg"></div>
             <div class="hero-content">
-                <span class="tag-destaque">📖 Devocional de Hoje</span>
-                <h1 id="hero-titulo">Carregando Título...</h1>
-                <p id="hero-versiculo" class="hero-desc">"Carregando o versículo do dia..."</p>
+                <span class="tag-destaque">📖 Leitura de Hoje</span>
+                <h1 id="hero-titulo">Gênesis 1-3</h1>
+                <p id="hero-versiculo">"No princípio criou Deus o céu e a terra..."</p>
                 
                 <div class="hero-actions">
-                    <button class="btn-play" onclick="abrirLeitura()">
-                        <i class="fas fa-play"></i> Ler & Ouvir
-                    </button>
-                    <button class="btn-info" onclick="rolarParaFim()">
-                        <i class="fas fa-info-circle"></i> Detalhes
+                    <button class="btn-play" onclick="abrirLeitura(1)">
+                        <i class="fas fa-play"></i> Começar
                     </button>
                 </div>
             </div>
         </header>
 
         <section class="trilha">
-            <h3 class="trilha-titulo">Sua Jornada Bíblica</h3>
+            <h3 class="trilha-titulo">Sua Jornada Bíblica (Cronológica)</h3>
             <div class="carousel" id="carousel-leitura">
                 </div>
         </section>
 
-        <section class="trilha">
+        <section class="trilha" id="secao-oracao">
             <div class="trilha-header">
-                <h3 class="trilha-titulo">Pedidos da Comunidade</h3>
-                <button class="btn-small" onclick="abrirNovoPedido()">+ Novo Pedido</button>
+                <h3 class="trilha-titulo">🙏 Mural de Intercessão</h3>
+                <button class="btn-small" onclick="abrirNovoPedido()">+ Pedir Oração</button>
             </div>
-            <div class="carousel" id="carousel-oracao">
-                <div class="card-empty">Carregando pedidos...</div>
-            </div>
-        </section>
-
-        <section class="forum-section">
-            <h3 class="trilha-titulo">Discussões em Alta 🔥</h3>
             
-            <div class="forum-card">
-                <div class="forum-icon">💬</div>
-                <div class="forum-content">
-                    <h4>Dúvidas sobre o Jejum de Daniel</h4>
-                    <p>Alguém pode me explicar como funciona a questão dos alimentos?</p>
-                    <div class="forum-meta">12 Comentários • Postado por Ana</div>
-                </div>
-            </div>
-             <div class="forum-card">
-                <div class="forum-icon">🎸</div>
-                <div class="forum-content">
-                    <h4>Músicas para o Culto de Jovens</h4>
-                    <p>Sugestões de louvores animados para sábado.</p>
-                    <div class="forum-meta">8 Comentários • Postado por Lucas</div>
-                </div>
+            <div class="prayer-feed" id="feed-oracao">
+                <div class="card-empty">Carregando pedidos da comunidade...</div>
             </div>
         </section>
         
-        <br><br><br> </main>
+        <br><br><br>
+    </main>
 
     <div class="bottom-menu">
         <div class="menu-item active"><i class="fas fa-home"></i><small>Início</small></div>
-        <div class="menu-item"><i class="fas fa-bible"></i><small>Bíblia</small></div>
-        <div class="menu-item" onclick="abrirNovoPedido()"><i class="fas fa-hands-praying"></i><small>Orar</small></div>
-        <div class="menu-item" onclick="abrirLogin()"><i class="fas fa-user"></i><small>Perfil</small></div>
-    </div>
-
-    <div id="modal-leitura" class="modal-overlay hidden">
-        <div class="modal-content-large">
-            <button class="close-btn" onclick="fecharLeitura()"><i class="fas fa-times"></i></button>
-            
-            <div class="player-header">
-                <h2 id="modal-titulo-texto">Título do Devocional</h2>
-                <span id="modal-ref">Referência</span>
-            </div>
-
-            <div class="player-controls">
-                <button id="btn-ouvir-modal" class="btn-play-audio">
-                    <i class="fas fa-volume-up"></i> Ouvir Narração
-                </button>
-            </div>
-
-            <div class="text-scroll" id="modal-corpo-texto">
-                </div>
-        </div>
+        <div class="menu-item" onclick="document.getElementById('carousel-leitura').scrollIntoView({behavior: 'smooth'})"><i class="fas fa-bible"></i><small>Bíblia</small></div>
+        <div class="menu-item" onclick="abrirNovoPedido()"><i class="fas fa-hands-praying"></i><small>Pedir</small></div>
+        <div class="menu-item" onclick="window.checarPerfil()"><i class="fas fa-user"></i><small>Perfil</small></div>
     </div>
 
     <div id="modal-login" class="modal-overlay hidden">
@@ -110,16 +68,15 @@
             <form id="form-auth">
                 <div id="campos-cadastro" class="hidden">
                     <input type="text" id="nome-input" placeholder="Seu Nome">
-                    <input type="tel" id="telefone-input" placeholder="Celular">
                 </div>
-                <input type="email" id="email-input" placeholder="Email ou número de telefone">
-                <input type="password" id="senha-input" placeholder="Senha">
+                <input type="email" id="email-input" placeholder="Email" required>
+                <input type="password" id="senha-input" placeholder="Senha" required>
                 
                 <button type="submit" id="btn-submit-auth" class="btn-red">Entrar</button>
             </form>
             <p class="toggle-login">
                 <span id="txt-pergunta">Novo por aqui?</span> 
-                <a href="#" id="link-toggle" class="white-link">Assine agora (Criar conta).</a>
+                <a href="#" id="link-toggle" class="white-link">Criar conta agora.</a>
             </p>
         </div>
     </div>
@@ -128,21 +85,95 @@
         <div class="modal-content-small">
             <button class="close-btn" onclick="fecharModais()"><i class="fas fa-times"></i></button>
             <h3>Fazer Pedido de Oração</h3>
-            <textarea id="texto-pedido" placeholder="Escreva seu pedido aqui..." rows="5"></textarea>
+            <textarea id="texto-pedido" placeholder="Compartilhe seu coração com a igreja..." rows="5"></textarea>
             <div class="checkbox-area">
-                <input type="checkbox" id="check-anonimo"> <label for="check-anonimo">Anônimo</label>
+                <input type="checkbox" id="check-anonimo"> <label for="check-anonimo" style="color:white">Postar como Anônimo</label>
             </div>
-            <button id="btn-enviar-pedido" class="btn-red">Publicar</button>
+            <button id="btn-enviar-pedido" class="btn-red">Publicar no Mural</button>
         </div>
+    </div>
+
+    <div id="modal-perfil" class="modal-overlay hidden">
+        <div class="modal-content-small">
+            <button class="close-btn" onclick="fecharModais()"><i class="fas fa-times"></i></button>
+            
+            <div style="margin: 0 auto 20px; width: 80px; height: 80px; background: #a83232; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; color: white;" id="perfil-avatar-grande">
+                U
+            </div>
+
+            <h3 style="margin-bottom: 20px;">Minha Conta</h3>
+            
+            <label style="display:block; text-align:left; color:#888; margin-bottom:5px; font-size:0.8rem">Nome de Exibição</label>
+            <input type="text" id="edit-nome" placeholder="Seu nome">
+
+            <label style="display:block; text-align:left; color:#888; margin-bottom:5px; font-size:0.8rem">Email</label>
+            <input type="text" id="edit-email" disabled style="opacity: 0.5; cursor: not-allowed; background: #222;">
+
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button onclick="salvarPerfil()" class="btn-red" style="background: #46d369; color: black;">Salvar</button>
+                <button onclick="sairDaConta()" class="btn-red" style="background: #333; border: 1px solid #555; color: #ddd;">Sair</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-leitura" class="modal-overlay hidden">
+        <div class="modal-content-large">
+            <button class="close-btn" onclick="fecharLeitura()"><i class="fas fa-times"></i></button>
+            
+            <div class="leitura-header">
+                <h2 id="modal-titulo-texto">Leitura</h2>
+            </div>
+
+            <div class="leitura-body">
+                <div class="text-scroll" id="modal-corpo-texto">
+                    <p style="text-align: center; color: #888; margin-top: 20px;">Use sua Bíblia física para acompanhar.</p>
+                    <hr style="border-color: #333; margin: 20px 0;">
+                </div>
+
+                <div class="comments-section">
+                    <h3>💬 Comentários</h3>
+                    <div id="lista-comentarios" class="comments-list">
+                        </div>
+                    <div class="comment-input-area">
+                        <input type="text" id="input-comentario" placeholder="O que Deus falou com você hoje?">
+                        <button onclick="enviarComentario()" class="btn-send"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-box" class="toast hidden">
+        <div id="toast-icon"></div>
+        <div id="toast-msg">Mensagem</div>
     </div>
 
     <script type="module" src="app.js"></script>
     <script>
-        // Funções visuais simples globais
-        window.abrirLeitura = () => document.getElementById('modal-leitura').classList.remove('hidden');
+        // Funções visuais simples (as complexas estão no app.js)
         window.fecharLeitura = () => document.getElementById('modal-leitura').classList.add('hidden');
         window.fecharModais = () => document.querySelectorAll('.modal-overlay').forEach(m => m.classList.add('hidden'));
-        window.rolarParaFim = () => window.scrollTo(0, document.body.scrollHeight);
+        window.abrirLogin = () => document.getElementById('modal-login').classList.remove('hidden');
+        
+        window.abrirNovoPedido = () => {
+            const userBadge = document.getElementById('user-area').innerText;
+            if(userBadge.includes("Entrar")) {
+                window.abrirLogin();
+            } else {
+                document.getElementById('modal-pedido').classList.remove('hidden');
+            }
+        };
+
+        // Atalho para abrir perfil se estiver logado
+        window.checarPerfil = () => {
+             const userBadge = document.getElementById('user-area').innerText;
+             if(userBadge.includes("Entrar")) {
+                 window.abrirLogin();
+             } else {
+                 // A função real está no app.js
+                 if(window.abrirPerfil) window.abrirPerfil();
+             }
+        }
     </script>
 </body>
 </html>
