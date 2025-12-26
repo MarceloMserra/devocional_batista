@@ -1,0 +1,130 @@
+/* RESET E CORES */
+:root {
+    --bg: #141414; /* Preto Netflix */
+    --card: #1f1f1f;
+    --red: #E50914; /* Vermelho Marca */
+    --text: #ffffff;
+    --text-muted: #b3b3b3;
+    --accent: #46d369; /* Verde (coincidência alta) */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+body { background-color: var(--bg); color: var(--text); }
+
+/* HEADER FIXO TRANSPARENTE */
+.top-nav {
+    position: fixed; top: 0; width: 100%; padding: 15px 4%;
+    display: flex; justify-content: space-between; align-items: center;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%);
+    z-index: 100;
+}
+.logo { font-family: 'Cinzel', serif; color: var(--red); font-size: 1.2rem; font-weight: bold; letter-spacing: 1px; }
+.user-badge { cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: bold; font-size: 0.9rem; }
+.avatar-img { width: 30px; height: 30px; border-radius: 4px; background: var(--red); display: flex; align-items: center; justify-content: center; }
+
+/* HERO SECTION (BANNER GIGANTE) */
+.hero {
+    height: 75vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 4%;
+}
+.hero-bg {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: url('https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?q=80&w=1000&auto=format&fit=crop') center/cover;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+    opacity: 0.6;
+    z-index: -1;
+}
+.hero-content { max-width: 600px; margin-top: 50px; }
+.tag-destaque { color: var(--text-muted); font-weight: bold; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; display: block; margin-bottom: 10px; }
+.hero h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 15px; font-weight: 800; }
+.hero-desc { font-size: 1.1rem; color: #fff; margin-bottom: 25px; font-style: italic; border-left: 3px solid var(--red); padding-left: 15px; }
+
+.hero-actions { display: flex; gap: 10px; }
+.btn-play { background: white; color: black; border: none; padding: 10px 25px; border-radius: 4px; font-weight: bold; font-size: 1rem; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: 0.2s; }
+.btn-play:hover { background: #ddd; }
+.btn-info { background: rgba(109, 109, 110, 0.7); color: white; border: none; padding: 10px 25px; border-radius: 4px; font-weight: bold; font-size: 1rem; cursor: pointer; display: flex; align-items: center; gap: 10px; }
+.btn-info:hover { background: rgba(109, 109, 110, 0.4); }
+
+/* TRILHAS (CARROSSEL) */
+.trilha { margin: 20px 0 40px 20px; }
+.trilha-header { display: flex; justify-content: space-between; padding-right: 20px; align-items: center; margin-bottom: 10px; }
+.trilha-titulo { font-size: 1.1rem; color: #e5e5e5; font-weight: 600; margin-bottom: 10px; }
+.btn-small { background: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; }
+
+.carousel {
+    display: flex; gap: 10px; overflow-x: auto; padding-right: 20px; padding-bottom: 10px;
+}
+.carousel::-webkit-scrollbar { display: none; }
+
+/* Cards de Leitura (Episódios) */
+.card-leitura {
+    min-width: 140px; height: 80px; background: var(--card); border-radius: 4px;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    cursor: pointer; transition: 0.3s; position: relative; border: 1px solid #333;
+}
+.card-leitura:hover { transform: scale(1.05); z-index: 10; border-color: var(--text); }
+.card-leitura.lido { border-color: var(--accent); }
+.card-leitura.lido::after { content: '✓'; position: absolute; top: 5px; right: 5px; color: var(--accent); font-weight: bold; }
+
+/* Cards de Oração */
+.card-oracao {
+    min-width: 250px; background: #2f2f2f; padding: 15px; border-radius: 6px;
+    border-top: 2px solid var(--red); flex-shrink: 0;
+}
+.card-top { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px; display: flex; justify-content: space-between; }
+.btn-orar { background: transparent; border: 1px solid #555; color: white; width: 100%; padding: 5px; margin-top: 10px; cursor: pointer; border-radius: 4px; }
+.btn-orar:hover { background: var(--text); color: black; }
+
+/* FÓRUM */
+.forum-section { padding: 0 20px; }
+.forum-card {
+    background: var(--card); padding: 15px; margin-bottom: 10px; border-radius: 8px;
+    display: flex; gap: 15px; align-items: flex-start;
+}
+.forum-icon { font-size: 1.5rem; background: #333; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+.forum-content h4 { font-size: 1rem; margin-bottom: 5px; color: white; }
+.forum-content p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.4; }
+.forum-meta { font-size: 0.75rem; color: #666; margin-top: 8px; }
+
+/* MENU INFERIOR */
+.bottom-menu {
+    position: fixed; bottom: 0; width: 100%; height: 60px; background: #121212;
+    display: flex; justify-content: space-around; align-items: center; border-top: 1px solid #333; z-index: 900;
+}
+.menu-item { color: #555; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 1.2rem; cursor: pointer; }
+.menu-item small { font-size: 0.6rem; }
+.menu-item.active { color: white; }
+
+/* MODAIS */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8); z-index: 2000;
+    display: flex; align-items: center; justify-content: center;
+}
+.hidden { display: none !important; }
+
+.modal-content-small {
+    background: #181818; padding: 40px; border-radius: 8px; width: 90%; max-width: 400px; text-align: center; position: relative;
+}
+.modal-content-large {
+    background: #181818; width: 95%; height: 90%; border-radius: 12px; position: relative; padding: 20px; display: flex; flex-direction: column;
+}
+
+/* Inputs e Botões do Modal */
+input, textarea {
+    background: #333; border: none; width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 4px; color: white;
+}
+.btn-red { background: var(--red); color: white; border: none; width: 100%; padding: 15px; border-radius: 4px; font-weight: bold; font-size: 1rem; cursor: pointer; }
+.close-btn { position: absolute; top: 15px; right: 20px; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+.white-link { color: white; text-decoration: none; }
+.white-link:hover { text-decoration: underline; }
+
+/* Player de Leitura */
+.text-scroll { flex: 1; overflow-y: auto; background: #222; padding: 20px; border-radius: 8px; line-height: 1.8; font-size: 1.1rem; color: #ddd; margin-top: 20px; }
+.btn-play-audio { width: 100%; padding: 15px; background: #333; color: white; border: 1px solid #555; cursor: pointer; font-weight: bold; border-radius: 4px; }
+.btn-play-audio:hover { background: #444; }

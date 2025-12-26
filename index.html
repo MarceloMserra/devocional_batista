@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunidade Batista | Streaming de Fé</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <main class="app-content">
+        
+        <nav class="top-nav">
+            <div class="logo">✝️ PROJETO ÁGORA</div>
+            <div id="user-area" class="user-badge" onclick="abrirLogin()">
+                <i class="fas fa-user-circle"></i> Entrar
+            </div>
+        </nav>
+
+        <header class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-content">
+                <span class="tag-destaque">📖 Devocional de Hoje</span>
+                <h1 id="hero-titulo">Carregando Título...</h1>
+                <p id="hero-versiculo" class="hero-desc">"Carregando o versículo do dia..."</p>
+                
+                <div class="hero-actions">
+                    <button class="btn-play" onclick="abrirLeitura()">
+                        <i class="fas fa-play"></i> Ler & Ouvir
+                    </button>
+                    <button class="btn-info" onclick="rolarParaFim()">
+                        <i class="fas fa-info-circle"></i> Detalhes
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="trilha">
+            <h3 class="trilha-titulo">Sua Jornada Bíblica</h3>
+            <div class="carousel" id="carousel-leitura">
+                </div>
+        </section>
+
+        <section class="trilha">
+            <div class="trilha-header">
+                <h3 class="trilha-titulo">Pedidos da Comunidade</h3>
+                <button class="btn-small" onclick="abrirNovoPedido()">+ Novo Pedido</button>
+            </div>
+            <div class="carousel" id="carousel-oracao">
+                <div class="card-empty">Carregando pedidos...</div>
+            </div>
+        </section>
+
+        <section class="forum-section">
+            <h3 class="trilha-titulo">Discussões em Alta 🔥</h3>
+            
+            <div class="forum-card">
+                <div class="forum-icon">💬</div>
+                <div class="forum-content">
+                    <h4>Dúvidas sobre o Jejum de Daniel</h4>
+                    <p>Alguém pode me explicar como funciona a questão dos alimentos?</p>
+                    <div class="forum-meta">12 Comentários • Postado por Ana</div>
+                </div>
+            </div>
+             <div class="forum-card">
+                <div class="forum-icon">🎸</div>
+                <div class="forum-content">
+                    <h4>Músicas para o Culto de Jovens</h4>
+                    <p>Sugestões de louvores animados para sábado.</p>
+                    <div class="forum-meta">8 Comentários • Postado por Lucas</div>
+                </div>
+            </div>
+        </section>
+        
+        <br><br><br> </main>
+
+    <div class="bottom-menu">
+        <div class="menu-item active"><i class="fas fa-home"></i><small>Início</small></div>
+        <div class="menu-item"><i class="fas fa-bible"></i><small>Bíblia</small></div>
+        <div class="menu-item" onclick="abrirNovoPedido()"><i class="fas fa-hands-praying"></i><small>Orar</small></div>
+        <div class="menu-item" onclick="abrirLogin()"><i class="fas fa-user"></i><small>Perfil</small></div>
+    </div>
+
+    <div id="modal-leitura" class="modal-overlay hidden">
+        <div class="modal-content-large">
+            <button class="close-btn" onclick="fecharLeitura()"><i class="fas fa-times"></i></button>
+            
+            <div class="player-header">
+                <h2 id="modal-titulo-texto">Título do Devocional</h2>
+                <span id="modal-ref">Referência</span>
+            </div>
+
+            <div class="player-controls">
+                <button id="btn-ouvir-modal" class="btn-play-audio">
+                    <i class="fas fa-volume-up"></i> Ouvir Narração
+                </button>
+            </div>
+
+            <div class="text-scroll" id="modal-corpo-texto">
+                </div>
+        </div>
+    </div>
+
+    <div id="modal-login" class="modal-overlay hidden">
+        <div class="modal-content-small">
+            <button class="close-btn" onclick="fecharModais()"><i class="fas fa-times"></i></button>
+            <h2>Entrar na Comunidade</h2>
+            <form id="form-auth">
+                <div id="campos-cadastro" class="hidden">
+                    <input type="text" id="nome-input" placeholder="Seu Nome">
+                    <input type="tel" id="telefone-input" placeholder="Celular">
+                </div>
+                <input type="email" id="email-input" placeholder="Email ou número de telefone">
+                <input type="password" id="senha-input" placeholder="Senha">
+                
+                <button type="submit" id="btn-submit-auth" class="btn-red">Entrar</button>
+            </form>
+            <p class="toggle-login">
+                <span id="txt-pergunta">Novo por aqui?</span> 
+                <a href="#" id="link-toggle" class="white-link">Assine agora (Criar conta).</a>
+            </p>
+        </div>
+    </div>
+
+    <div id="modal-pedido" class="modal-overlay hidden">
+        <div class="modal-content-small">
+            <button class="close-btn" onclick="fecharModais()"><i class="fas fa-times"></i></button>
+            <h3>Fazer Pedido de Oração</h3>
+            <textarea id="texto-pedido" placeholder="Escreva seu pedido aqui..." rows="5"></textarea>
+            <div class="checkbox-area">
+                <input type="checkbox" id="check-anonimo"> <label for="check-anonimo">Anônimo</label>
+            </div>
+            <button id="btn-enviar-pedido" class="btn-red">Publicar</button>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+    <script>
+        // Funções visuais simples globais
+        window.abrirLeitura = () => document.getElementById('modal-leitura').classList.remove('hidden');
+        window.fecharLeitura = () => document.getElementById('modal-leitura').classList.add('hidden');
+        window.fecharModais = () => document.querySelectorAll('.modal-overlay').forEach(m => m.classList.add('hidden'));
+        window.rolarParaFim = () => window.scrollTo(0, document.body.scrollHeight);
+    </script>
+</body>
+</html>
